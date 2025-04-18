@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Academic Buddy | Peer-Powered Learning Platform</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
       --primary: #4361ee;
@@ -84,6 +84,73 @@
     .btn-secondary:hover {
       background-color: var(--primary-light);
       transform: translateY(-2px);
+    }
+    /* Navigation Bar */
+    .navbar {
+      background-color: white;
+      box-shadow: var(--box-shadow);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo img {
+      height: 28px;
+      width: 28px;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .nav-links li a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-links li a:hover {
+      color: var(--primary);
+    }
+    .btn-nav {
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+    }
+    .btn-login {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-login:hover {
+      background-color: var(--primary-light);
+    }
+    .btn-signup {
+      background-color: var(--primary);
+      color: white;
+      margin-left: -12px;
+    }
+    .btn-signup:hover {
+      background-color: #3a56d4;
     }
     /* Hero Section */
     .hero {
@@ -249,6 +316,23 @@
   </style>
 </head>
 <body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <img src="https://img.icons8.com/ios-filled/50/4361ee/graduation-cap.png" alt="Logo" />
+        Academic Buddy
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#login" class="btn-nav btn-login">Login</a></li>
+        <li><a href="#signup" class="btn-nav btn-signup">Signup</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="container">
     <!-- Hero Section -->
     <section class="hero">
@@ -262,7 +346,7 @@
           </div>
         </div>
         <div class="hero-image">
-          <img src="ChatGPT Image Apr 18, 2025, 02_05_41 PM.png" alt="Students collaborating">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Students collaborating" />
         </div>
       </div>
     </section>
