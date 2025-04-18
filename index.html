@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Buddy | Peer-Powered Learning Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-light: #e0e7ff;
+      --secondary: #f72585;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+      --border-radius: 12px;
+      --box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #f8f9fa;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    section {
+      padding: 60px 0;
+    }
+    h1, h2, h3 {
+      line-height: 1.2;
+    }
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+    }
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+    p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-right: 12px;
+      margin-bottom: 12px;
+    }
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #3a56d4;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background-color: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .btn-secondary:hover {
+      background-color: var(--primary-light);
+      transform: translateY(-2px);
+    }
+    /* Hero Section */
+    .hero {
+      padding: 80px 0;
+    }
+    .hero-content {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    .hero-text {
+      flex: 1;
+    }
+    .hero-image {
+      flex: 1;
+      text-align: center;
+    }
+    .hero-image img {
+      max-width: 100%;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    .hero-buttons {
+      margin-top: 30px;
+    }
+    /* About Section */
+    .about {
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 40px;
+    }
+    /* Services Section */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 30px;
+      box-shadow: var(--box-shadow);
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+    }
+    .service-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    /* How It Works */
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .step {
+      flex: 1;
+      min-width: 250px;
+      background: white;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      text-align: center;
+      position: relative;
+    }
+    .step-number {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      line-height: 40px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    /* Trust Section */
+    .trust-badges {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .badge {
+      text-align: center;
+      padding: 20px;
+      flex: 1;
+      min-width: 200px;
+    }
+    .badge-icon {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    /* Contact Section */
+    .contact {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 40px;
+    }
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .contact-method {
+      flex: 1;
+      min-width: 250px;
+    }
+    .contact-icon {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 20px 0;
+    }
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      color: var(--primary-light);
+    }
+    .social-links {
+      margin-top: 20px;
+    }
+    .social-links a {
+      color: white;
+      font-size: 1.5rem;
+      margin: 0 10px;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-content {
+        flex-direction: column;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Peer-Powered Academic Success</h1>
+          <p>Academic Buddy connects students with verified peer tutors and mentors for personalized learning support, study materials, and career guidance.</p>
+          <div class="hero-buttons">
+            <a href="#signup" class="btn btn-primary">Get Started</a>
+            <a href="#how-it-works" class="btn btn-secondary">How It Works</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="ChatGPT Image Apr 18, 2025, 02_05_41 PM.png" alt="Students collaborating">
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <h2>About Academic Buddy</h2>
+      <p>We're revolutionizing academic support by creating a community where students help students. Our platform makes it easy to find trustworthy peer tutors, access quality study materials, and get guidance from students who've excelled in your courses.</p>
+      <p>Founded by students for students, we understand the challenges you face and have built solutions that actually work for your academic needs.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-file-excel"></i>
+          </div>
+          <h3>CAEG/CAMD Sheet Help</h3>
+          <p>Get assistance with your engineering design sheets from peers who've aced these courses.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <h3>Assignment Assistance</h3>
+          <p>Stuck on an assignment? Connect with tutors who can guide you without doing the work for you.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-notes-medical"></i>
+          </div>
+          <h3>E-Notes & Study Materials</h3>
+          <p>Access curated digital notes, past papers, textbooks, and comprehensive study guides shared by top students.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <h3>Topic-wise Tutoring</h3>
+          <p>Struggling with specific concepts? Get 1-on-1 help exactly where you need it.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h3>Academic Counseling</h3>
+          <p>Guidance on course selection, study techniques, and overcoming academic challenges.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <h3>Career Guidance</h3>
+          <p>Connect with seniors who can share insights about career paths and opportunities.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+      <h2>How Academic Buddy Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Create Your Profile</h3>
+          <p>Sign up as a student seeking help or as a peer tutor offering support.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Find Your Match</h3>
+          <p>Search for tutors by subject, course, or specific topics you need help with.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Connect Securely</h3>
+          <p>Use our in-platform messaging to discuss your needs and schedule sessions.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Learn & Grow</h3>
+          <p>Get the help you need and leave feedback to help others in our community.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust">
+      <h2>Trust & Safety</h2>
+      <p>We take your security and academic integrity seriously with multiple verification layers.</p>
+      <div class="trust-badges">
+        <div class="badge">
+          <div class="badge-icon">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h3>Verified Profiles</h3>
+          <p>All tutors verify their academic credentials and identity.</p>
+        </div>
+        <div class="badge">
+          <div class="badge-icon">
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <h3>Transparent Reviews</h3>
+          <p>Real feedback from students helps you choose the right tutor.</p>
+        </div>
+        <div class="badge">
+          <div class="badge-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3>Secure Platform</h3>
+          <p>All communication stays on our platform until you're comfortable.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <h2>Contact Us</h2>
+      <p>Have questions? We're here to help!</p>
+      <div class="contact-info">
+        <div class="contact-method">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Email</h3>
+          <p>support@academicbuddy.com</p>
+          <p>Response within 24 hours</p>
+        </div>
+        <div class="contact-method">
+          <div class="contact-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <h3>Phone</h3>
+          <p>+1 (555) 123-4567</p>
+          <p>Mon-Fri, 9am-5pm EST</p>
+        </div>
+        <div class="contact-method">
+          <div class="contact-icon">
+            <i class="fas fa-comment-dots"></i>
+          </div>
+          <h3>Live Chat</h3>
+          <p>Available on our platform</p>
+          <p>When you're logged in</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <h3>Academic Buddy</h3>
+      <p>Peer-powered academic support for students, by students</p>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#contact">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </div>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <p>&copy; 2023 Academic Buddy. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
