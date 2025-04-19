@@ -67,6 +67,8 @@
       transition: all 0.3s ease;
       margin-right: 12px;
       margin-bottom: 12px;
+      cursor: pointer;
+      border: none;
     }
     .btn-primary {
       background-color: var(--primary);
@@ -313,6 +315,104 @@
         font-size: 1.8rem;
       }
     }
+
+    /* NEW MODAL STYLES */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      overflow-y: auto;
+    }
+    .modal-content {
+      background-color: white;
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      animation: modalFadeIn 0.3s;
+    }
+    @keyframes modalFadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .close-modal {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--gray);
+    }
+    .auth-options, .signup-options {
+      text-align: center;
+    }
+    .auth-buttons, .signup-options {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .auth-form {
+      text-align: left;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+    }
+    .form-group textarea {
+      min-height: 100px;
+    }
+    .services-checkbox {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .services-checkbox label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: normal;
+    }
+    .auth-switch {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .auth-switch a {
+      color: var(--primary);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+    .form-footer {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .file-upload {
+      margin-top: 10px;
+    }
+    .file-upload-info {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-top: 5px;
+    }
   </style>
 </head>
 <body>
@@ -327,8 +427,8 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#login" class="btn-nav btn-login">Login</a></li>
-        <li><a href="#signup" class="btn-nav btn-signup">Signup</a></li>
+        <li><a href="#" class="btn-nav btn-login" id="nav-login">Login</a></li>
+        <li><a href="#" class="btn-nav btn-signup" id="nav-signup">Signup</a></li>
       </ul>
     </div>
   </nav>
@@ -341,7 +441,7 @@
           <h1>Peer-Powered Academic Success</h1>
           <p>Academic Buddy connects students with verified peer tutors and mentors for personalized learning support, study materials, and career guidance.</p>
           <div class="hero-buttons">
-            <a href="#signup" class="btn btn-primary">Get Started</a>
+            <a href="#" class="btn btn-primary" id="hero-get-started">Get Started</a>
             <a href="#how-it-works" class="btn btn-secondary">How It Works</a>
           </div>
         </div>
@@ -518,5 +618,257 @@
       <p>&copy; 2023 Academic Buddy. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Login/Signup Modal -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <div id="auth-options">
+        <h2>Welcome to Academic Buddy</h2>
+        <p>Choose how you'd like to continue:</p>
+        <div class="auth-buttons">
+          <button id="login-btn" class="btn btn-primary">Login</button>
+          <button id="signup-btn" class="btn btn-secondary">Sign Up</button>
+        </div>
+      </div>
+      
+      <div id="login-form" class="auth-form" style="display:none;">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" placeholder="Enter your email" required />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="Enter your password" required />
+          </div>
+          <div class="form-footer">
+            <button type="submit" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+        <p class="auth-switch">Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
+      </div>
+      
+      <div id="signup-form" class="auth-form" style="display:none;">
+        <h2>Sign Up</h2>
+        <div class="signup-options">
+          <button id="client-signup" class="btn btn-primary">I Need Help</button>
+          <button id="provider-signup" class="btn btn-secondary">I Can Help</button>
+        </div>
+        
+        <div id="client-form" style="display:none;">
+          <form id="clientSignupForm">
+            <div class="form-group">
+              <label for="client-name">Full Name</label>
+              <input type="text" id="client-name" placeholder="Your full name" required />
+            </div>
+            <div class="form-group">
+              <label for="client-email">Email Address</label>
+              <input type="email" id="client-email" placeholder="Your email" required />
+            </div>
+            <div class="form-group">
+              <label for="client-phone">Phone Number</label>
+              <input type="tel" id="client-phone" placeholder="Your phone number" required />
+            </div>
+            <div class="form-group">
+              <label for="client-password">Password</label>
+              <input type="password" id="client-password" placeholder="Create password (min 8 characters)" required minlength="8" />
+            </div>
+            <div class="form-group">
+              <label for="client-confirm-password">Confirm Password</label>
+              <input type="password" id="client-confirm-password" placeholder="Confirm password" required minlength="8" />
+            </div>
+            <div class="form-footer">
+              <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+          </form>
+          <p class="auth-switch">Already have an account? <a href="#" id="show-login-from-client">Login</a></p>
+        </div>
+        
+        <div id="provider-form" style="display:none;">
+          <form id="providerSignupForm">
+            <div class="form-group">
+              <label for="provider-name">Full Name</label>
+              <input type="text" id="provider-name" placeholder="Your full name" required />
+            </div>
+            <div class="form-group">
+              <label for="provider-email">Email Address</label>
+              <input type="email" id="provider-email" placeholder="Your email" required />
+            </div>
+            <div class="form-group">
+              <label for="provider-phone">Phone Number</label>
+              <input type="tel" id="provider-phone" placeholder="Your phone number" required />
+            </div>
+            <div class="form-group">
+              <label for="provider-password">Password</label>
+              <input type="password" id="provider-password" placeholder="Create password (min 8 characters)" required minlength="8" />
+            </div>
+            <div class="form-group">
+              <label for="provider-confirm-password">Confirm Password</label>
+              <input type="password" id="provider-confirm-password" placeholder="Confirm password" required minlength="8" />
+            </div>
+            <div class="form-group">
+              <label>Services You Can Provide:</label>
+              <div class="services-checkbox">
+                <label><input type="checkbox" name="services" value="caeg"> CAEG/CAMD Sheet Help</label>
+                <label><input type="checkbox" name="services" value="assignment"> Assignment Assistance</label>
+                <label><input type="checkbox" name="services" value="enotes"> E-Notes & Study Materials</label>
+                <label><input type="checkbox" name="services" value="tutoring"> Topic-wise Tutoring</label>
+                <label><input type="checkbox" name="services" value="counseling"> Academic Counseling</label>
+                <label><input type="checkbox" name="services" value="career"> Career Guidance</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="achievements">Your Achievements</label>
+              <textarea id="achievements" placeholder="Describe your academic achievements, qualifications, and experience" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="proof">Upload Proof of Expertise</label>
+              <div class="file-upload">
+                <input type="file" id="proof" accept=".pdf,.jpg,.jpeg,.png" required />
+                <p class="file-upload-info">Upload your academic certificates, transcripts, or other proof (PDF, JPG, PNG)</p>
+              </div>
+            </div>
+            <div class="form-footer">
+              <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+          </form>
+          <p class="auth-switch">Already have an account? <a href="#" id="show-login-from-provider">Login</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Modal functionality
+    const modal = document.getElementById("authModal");
+    const authOptions = document.getElementById("auth-options");
+    const loginForm = document.getElementById("login-form");
+    const signupForm = document.getElementById("signup-form");
+    const clientForm = document.getElementById("client-form");
+    const providerForm = document.getElementById("provider-form");
+
+    // Get all buttons that should open the modal
+    const getStartedBtn = document.getElementById('hero-get-started');
+    const loginBtnNav = document.getElementById('nav-login');
+    const signupBtnNav = document.getElementById('nav-signup');
+
+    // Open modal when clicking Get Started or Login/Signup buttons
+    [getStartedBtn, loginBtnNav, signupBtnNav].forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.style.display = "block";
+        
+        // If login button was clicked, show login form directly
+        if (btn.id === 'nav-login') {
+          authOptions.style.display = "none";
+          loginForm.style.display = "block";
+          signupForm.style.display = "none";
+        }
+        // If signup button was clicked, show signup options directly
+        else if (btn.id === 'nav-signup') {
+          authOptions.style.display = "none";
+          loginForm.style.display = "none";
+          signupForm.style.display = "block";
+        }
+      });
+    });
+
+    // Close modal
+    document.querySelector('.close-modal').addEventListener('click', function() {
+      modal.style.display = "none";
+      resetForms();
+    });
+
+    // Clicking outside modal closes it
+    window.addEventListener('click', function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        resetForms();
+      }
+    });
+
+    // Show login form
+    document.getElementById('login-btn').addEventListener('click', function() {
+      authOptions.style.display = "none";
+      loginForm.style.display = "block";
+    });
+
+    // Show signup form
+    document.getElementById('signup-btn').addEventListener('click', function() {
+      authOptions.style.display = "none";
+      signupForm.style.display = "block";
+    });
+
+    // Show client form
+    document.getElementById('client-signup').addEventListener('click', function() {
+      clientForm.style.display = "block";
+      providerForm.style.display = "none";
+    });
+
+    // Show provider form
+    document.getElementById('provider-signup').addEventListener('click', function() {
+      providerForm.style.display = "block";
+      clientForm.style.display = "none";
+    });
+
+    // Switch between forms
+    document.getElementById('show-signup').addEventListener('click', function(e) {
+      e.preventDefault();
+      loginForm.style.display = "none";
+      signupForm.style.display = "block";
+      clientForm.style.display = "none";
+      providerForm.style.display = "none";
+    });
+
+    document.getElementById('show-login-from-client').addEventListener('click', function(e) {
+      e.preventDefault();
+      signupForm.style.display = "none";
+      loginForm.style.display = "block";
+    });
+
+    document.getElementById('show-login-from-provider').addEventListener('click', function(e) {
+      e.preventDefault();
+      signupForm.style.display = "none";
+      loginForm.style.display = "block";
+    });
+
+    // Form submissions (frontend only - would connect to backend in real app)
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Login functionality would connect to backend in a real application');
+      modal.style.display = "none";
+      resetForms();
+    });
+
+    document.getElementById('clientSignupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Student registration would be processed by backend in a real application');
+      modal.style.display = "none";
+      resetForms();
+    });
+
+    document.getElementById('providerSignupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Tutor registration would be processed by backend in a real application');
+      modal.style.display = "none";
+      resetForms();
+    });
+
+    // Reset all forms when modal is closed
+    function resetForms() {
+      authOptions.style.display = "block";
+      loginForm.style.display = "none";
+      signupForm.style.display = "none";
+      clientForm.style.display = "none";
+      providerForm.style.display = "none";
+      
+      // Reset form fields
+      document.getElementById('loginForm').reset();
+      document.getElementById('clientSignupForm').reset();
+      document.getElementById('providerSignupForm').reset();
+    }
+  </script>
 </body>
 </html>
